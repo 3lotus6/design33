@@ -1,0 +1,464 @@
+/* @link https://utopia.fyi/type/calculator?c=360,16,1.2,1240,18,1.25,5,2,&s=0.75|0.5|0.25,1.5|2|3|4|6,s-l&g=s,l,xl,12 */
+:root {
+  --step--2: clamp(0.6944rem, 0.684rem + 0.0465vw, 0.72rem);
+  --step--1: clamp(0.8333rem, 0.8061rem + 0.1212vw, 0.9rem);
+  --step-0: clamp(1rem, 0.9489rem + 0.2273vw, 1.125rem);
+  --step-1: clamp(1.2rem, 1.1156rem + 0.375vw, 1.4063rem);
+  --step-2: clamp(1.44rem, 1.31rem + 0.5778vw, 1.7578rem);
+  --step-3: clamp(1.728rem, 1.536rem + 0.8532vw, 2.1973rem);
+  --step-4: clamp(2.0736rem, 1.7983rem + 1.2236vw, 2.7466rem);
+  --step-5: clamp(2.4883rem, 2.1018rem + 1.718vw, 3.4332rem);
+}
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+.navbar {
+  position: fixed;
+  top: 0;
+  z-index: 1000;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  height: 5rem;
+  background: rgba(0, 0, 0, 0.4);
+  -webkit-backdrop-filter: blur(0.625rem);
+          backdrop-filter: blur(0.625rem);
+}
+.navbar .nav-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 100rem;
+  padding: 0 5rem;
+  margin: 0 auto;
+}
+@media (width <= 80rem) {
+  .navbar .nav-container {
+    padding: 0 1.5625rem;
+  }
+}
+.navbar .logo img {
+  display: block;
+  height: 2.5rem;
+}
+
+.nav-menu {
+  display: flex;
+  list-style: none;
+}
+.nav-menu li {
+  margin-left: 2.5rem;
+}
+.nav-menu li a {
+  font-family: "Noto Sans KR", sans-serif;
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: #fff;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+@media (width >= 80.0625rem) {
+  .hamburger {
+    display: none;
+  }
+}
+@media (width <= 80rem) {
+  .hamburger {
+    display: flex;
+    flex-direction: column;
+    gap: 0.375rem;
+    cursor: pointer;
+  }
+  .hamburger span {
+    display: block;
+    width: 1.575rem;
+    height: 0.1875rem;
+    background-color: #fff;
+    transition: all 0.3s ease;
+  }
+  .nav-menu {
+    position: absolute;
+    top: 5rem;
+    left: -100%;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    height: calc(100vh - 5rem);
+    padding-top: 2.125rem;
+    background-color: rgba(0, 0, 0, 0.75);
+    transition: all 0.3s ease;
+  }
+  .nav-menu li {
+    margin: 1.25rem 0;
+  }
+  #menu-toggle:checked ~ .nav-menu {
+    left: 0;
+  }
+  #menu-toggle:checked ~ .hamburger span:nth-child(1) {
+    transform: translateY(0.5625rem) rotate(45deg);
+  }
+  #menu-toggle:checked ~ .hamburger span:nth-child(2) {
+    opacity: 0;
+  }
+  #menu-toggle:checked ~ .hamburger span:nth-child(3) {
+    transform: translateY(-0.5625rem) rotate(-45deg);
+  }
+}
+#menu-toggle {
+  display: none;
+}
+
+body {
+  color: rgb(0, 0, 0);
+  background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url("../../style/img/star.jpg");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center bottom;
+  background-size: cover;
+}
+
+p {
+  font-family: "Noto Sans KR", sans-serif;
+  font-size: var(--step-0);
+  font-weight: 300;
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.8);
+  letter-spacing: -0.06rem;
+  word-break: keep-all;
+}
+p strong {
+  font-weight: 400;
+  color: #fff;
+}
+
+.intro-full-width {
+  width: 100%;
+  padding: 6.25rem 0;
+  margin-top: 5rem;
+  margin-bottom: 2rem;
+  background: rgba(255, 255, 255, 0.07);
+  -webkit-backdrop-filter: blur(0.9375rem);
+          backdrop-filter: blur(0.9375rem);
+}
+.intro-full-width .intro-content {
+  max-width: 75rem;
+  padding: 0 2.5rem;
+  margin: 0 auto;
+  text-align: center;
+  opacity: 1;
+  transform: translateY(0);
+}
+.intro-full-width .intro-content:target .intro-content {
+  animation: bounce-up 0.8s ease-out forwards;
+}
+@media (width >= 50rem) {
+  .intro-full-width .intro-content {
+    padding: 0 3.125rem;
+  }
+}
+@media (width >= 80.0625rem) {
+  .intro-full-width .intro-content {
+    padding: 0 7.5rem;
+  }
+}
+.intro-full-width .intro-content .intro-icon {
+  width: 2.5rem;
+  margin-bottom: 0.0625rem;
+}
+.intro-full-width .intro-content h2 {
+  margin-bottom: 0.625rem;
+  font-family: "Noto Sans KR", sans-serif;
+  font-size: var(--step-2);
+  font-weight: 600;
+  color: #fff;
+  letter-spacing: -0.085rem;
+}
+.intro-full-width .intro-content p {
+  max-width: 43.75rem;
+  margin: 0 auto;
+  font-family: "Noto Sans KR", sans-serif;
+  font-size: var(--step-0);
+  font-weight: 10;
+  color: rgb(255, 255, 255);
+  letter-spacing: -0.06rem;
+  word-break: keep-all;
+}
+
+.brain-section {
+  width: 100%;
+  max-width: 100rem;
+  padding: 0 7.5rem;
+  margin: 0 auto;
+}
+@media (width <= 80rem) {
+  .brain-section {
+    padding: 1.25rem 2.5rem;
+  }
+}
+.brain-section .brain-container {
+  display: flex;
+  gap: 0;
+  align-items: center;
+}
+@media (width <= 80rem) {
+  .brain-section .brain-container {
+    flex-direction: column-reverse;
+    gap: 2.5rem;
+  }
+}
+.brain-section .brain-img-area {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+}
+.brain-section .brain-img-area img {
+  width: 110%;
+  max-width: 50rem;
+  height: auto;
+  filter: drop-shadow(0 0 1.25rem rgba(255, 255, 255, 0.05));
+}
+.brain-section .brain-text {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 1.5625rem;
+}
+.brain-section .brain-text h3 {
+  font-family: "Noto Sans KR", sans-serif;
+  font-size: var(--step-1);
+  font-weight: 600;
+  color: #fff;
+  letter-spacing: -0.0938rem;
+}
+.brain-section .brain-text .divider {
+  width: 100%;
+  height: 0.125rem;
+  margin-top: -0.3125rem;
+  background: rgba(255, 255, 255, 0.2);
+}
+.brain-section .brain-text p {
+  font-family: "Noto Sans KR", sans-serif;
+  font-size: var(--step-0);
+  font-weight: 10;
+  line-height: 1.8;
+  color: rgb(255, 255, 255);
+  letter-spacing: -0.06rem;
+  word-break: keep-all;
+}
+.brain-section .brain-text p strong {
+  font-weight: 400;
+  color: #fff;
+}
+
+.video-section {
+  width: 100%;
+  max-width: 100rem;
+  padding: 3.125rem 7.5rem;
+  margin: 0 auto;
+  margin-bottom: 3.75rem;
+}
+@media (width <= 80rem) {
+  .video-section {
+    padding: 0 2.5rem;
+  }
+}
+.video-section .brain-container {
+  display: flex;
+  gap: 3.75rem;
+  align-items: flex-start;
+}
+@media (width <= 80rem) {
+  .video-section .brain-container {
+    flex-direction: column-reverse;
+    gap: 2.5rem;
+  }
+}
+.video-section .brain-video-area {
+  display: flex;
+  flex: 1;
+  justify-content: center;
+  width: 100%;
+}
+.video-section .brain-video-area .video-ratio {
+  position: relative;
+  width: 95%;
+  padding-top: 56.25%;
+  overflow: hidden;
+  border-radius: 1.25rem;
+  box-shadow: 0 1.25rem 2.5rem rgba(0, 0, 0, 0.4);
+}
+.video-section .brain-video-area .video-ratio iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+.video-section .brain-text {
+  display: flex;
+  flex: 1.1;
+  flex-direction: column;
+  gap: 0.375rem;
+  width: 100%;
+}
+.video-section .brain-text h3 {
+  font-family: "Noto Sans KR", sans-serif;
+  font-size: var(--step-1);
+  font-weight: 600;
+  color: #fff;
+  letter-spacing: -0.0938rem;
+}
+.video-section .brain-text .divider {
+  width: 100%;
+  height: 0.125rem;
+  margin: 1.25rem 0;
+  background: rgba(255, 255, 255, 0.2);
+}
+.video-section .brain-text p {
+  font-family: "Noto Sans KR", sans-serif;
+  font-size: var(--step-0);
+  font-weight: 10;
+  line-height: 1.8;
+  color: rgb(255, 255, 255);
+  letter-spacing: -0.06rem;
+  word-break: keep-all;
+}
+.video-section .brain-text p strong {
+  font-weight: 400;
+  color: #fff;
+}
+.video-section .brain-text .result-cases {
+  display: flex;
+  gap: 2.5rem;
+  margin-top: 3.125rem;
+}
+@media (width <= 80rem) {
+  .video-section .brain-text .result-cases {
+    flex-direction: column;
+    gap: 1.875rem;
+  }
+}
+.video-section .brain-text .result-cases .case {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  align-items: flex-start;
+}
+@media (width <= 80rem) {
+  .video-section .brain-text .result-cases .case {
+    align-items: flex-start;
+    text-align: left;
+  }
+}
+.video-section .brain-text .result-cases .case h4 {
+  margin-bottom: 0.75rem;
+  font-family: "Noto Sans KR", sans-serif;
+  font-size: var(--step-0);
+  font-weight: 500;
+  color: #fff;
+}
+.video-section .brain-text .result-cases .case p {
+  margin-bottom: 1.25rem;
+  font-family: "Noto Sans KR", sans-serif;
+  font-size: var(--step-0);
+  line-height: 1.5;
+  color: rgb(255, 255, 255);
+}
+.video-section .brain-text .result-cases .case .wave-img {
+  width: 100%;
+  max-width: 31.25rem;
+  height: auto;
+  margin: 0 auto 0.625rem;
+  margin-bottom: 0.625rem;
+  opacity: 0.8;
+}
+.video-section .brain-text .result-cases .case .wave-label {
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.conclusion-section {
+  width: 100%;
+  padding: 3.125rem 0;
+  margin: 0 auto;
+  text-align: center;
+  background: rgba(172, 170, 170, 0.1);
+  -webkit-backdrop-filter: blur(0.9375rem);
+          backdrop-filter: blur(0.9375rem);
+}
+.conclusion-section .logo-content {
+  width: 100%;
+  max-width: 100rem;
+  padding: 0 7.5rem;
+  margin: 0 auto;
+  margin-bottom: 3.75rem;
+}
+@media (width <= 80rem) {
+  .conclusion-section .logo-content {
+    padding: 0 2.5rem;
+  }
+}
+.conclusion-section .logo-content .logo-icon {
+  width: 3.125rem;
+  margin-top: 2.5rem;
+  margin-bottom: 0.0625rem;
+}
+.conclusion-section .logo-content h2 {
+  margin-bottom: 0.625rem;
+  font-family: "Noto Sans KR", sans-serif;
+  font-size: var(--step-2);
+  font-weight: 600;
+  color: #fff;
+  letter-spacing: -0.085rem;
+}
+.conclusion-section .card-container {
+  display: flex;
+  gap: 3.75rem;
+  width: 100%;
+  max-width: 100rem;
+  padding: 0 7.5rem;
+  margin: 0 auto;
+  margin-bottom: 5rem;
+}
+@media (width <= 80rem) {
+  .conclusion-section .card-container {
+    flex-direction: column;
+    gap: 3.125rem;
+    padding: 0 2.5rem;
+  }
+}
+.conclusion-section .card-container .conclusion-card {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 1.5625rem;
+}
+.conclusion-section .card-container .conclusion-card .card-img {
+  width: 100%;
+  aspect-ratio: 16/9;
+  overflow: hidden;
+  border-radius: 0.625rem;
+}
+.conclusion-section .card-container .conclusion-card .card-img img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+.conclusion-section .card-container .conclusion-card .conclusion-desc {
+  font-family: "Noto Sans KR", sans-serif;
+  font-size: var(--step-0);
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.833);
+  text-align: left;
+  letter-spacing: -0.06rem;
+  word-break: keep-all;
+}
